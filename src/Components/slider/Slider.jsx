@@ -4,13 +4,11 @@ export default class Slider extends Component {
     control: false,
   };
   stopCarousel = () => {
-
-    this.setState({ control: false}, () => {
+    this.setState({ control: false }, () => {
       console.log(this.state.control);
     });
   };
   startCarousel = () => {
-
     this.setState({ control: "carousel" }, () => {
       console.log(this.state.control);
     });
@@ -23,6 +21,7 @@ export default class Slider extends Component {
           id="carouselExampleInterval"
           className="carousel slide w-50 m-auto"
           data-bs-ride={this.state.control}
+
         >
           <div className="carousel-inner">
             <div className="carousel-item active" data-bs-interval={1000}>

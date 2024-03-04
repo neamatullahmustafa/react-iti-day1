@@ -272,9 +272,11 @@ export default function Parent() {
   ];
   return (
     <>
-    <section className="row m-auto container row-cols-lg-6 row-cols-md-6">
-    {data.map((product)=> <Chiled key={product.id} pro = {product}/>)}
-</section>
+      <section className="row m-auto container row-cols-md-3 ">
+        {data.map((product) => (
+          <Chiled key={product.id} pro={product} />
+        ))}
+      </section>
     </>
   );
 }
