@@ -54,7 +54,7 @@ export default class SliderMan extends Component {
     return (
       <>
         <div className="w-50 m-auto">
-          <img src={images[currentIndex]} alt="current" />
+          <img src={images[currentIndex]} alt="current" className="w-100"/>
         </div>
         <div className="row row-cols-4 w-50 m-auto mb-3">
           <button
