@@ -30,22 +30,22 @@ export default class SliderMan extends Component {
 
   stopCarousel = () => {
     clearInterval(this.interval);
-    console.log("Carousel stopped");
+    // console.log("Carousel stopped");
   };
 
   startCarousel = () => {
     this.interval = setInterval(this.goToNext, 5000);
-    console.log("Carousel started");
+    // console.log("Carousel started");
   };
 
   componentDidMount() {
     this.interval = setInterval(this.goToNext, 5000);
-    console.log("Component mounted");
+    // console.log("Component mounted");
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
-    console.log("Component unmounted");
+    // console.log("Component unmounted");
   }
 
   render() {
@@ -54,7 +54,7 @@ export default class SliderMan extends Component {
     return (
       <>
         <div className="w-50 m-auto">
-          <img src={images[currentIndex]} alt="current" className="w-100"/>
+          <img src={images[currentIndex]} alt="current" className="w-100" />
         </div>
         <div className="row row-cols-4 w-50 m-auto mb-3">
           <button

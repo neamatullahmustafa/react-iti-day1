@@ -9,38 +9,37 @@ export default class Task2 extends Component {
     start: 0,
     end: 5,
   };
-   pageNext = () => {
+  pageNext = () => {
     if (this.state.end < 200) {
-        this.setState(prevState => ({
-            start: prevState.start + 5,
-            end: prevState.end + 5
-        }));
+      this.setState((prevState) => ({
+        start: prevState.start + 5,
+        end: prevState.end + 5,
+      }));
     } else {
-        this.setState({
-            start: 0,
-            end: 5
-        });
+      this.setState({
+        start: 0,
+        end: 5,
+      });
     }
-}
+  };
 
-     pagePrevious=()=>{
-    if (this.state.start >0) {
-        this.setState(prevState => ({
-            start: prevState.start - 5,
-            end: prevState.end - 5
-        }));
+  pagePrevious = () => {
+    if (this.state.start > 0) {
+      this.setState((prevState) => ({
+        start: prevState.start - 5,
+        end: prevState.end - 5,
+      }));
     } else {
-        this.setState({
-            start: 195,
-            end: 200
-        });
+      this.setState({
+        start: 195,
+        end: 200,
+      });
     }
-}
+  };
   componentDidMount() {
     axios
       .get("http://jsonplaceholder.typicode.com/todos")
       .then((res) => {
-        console.log(res.data);
         this.setState({ items: res.data });
       })
       .catch((err) => console.log(err));
@@ -67,21 +66,27 @@ export default class Task2 extends Component {
                     <td>{item.title}</td>
                     <td>
                       {item.completed ? (
-                    <i class="fa-solid fa-square-check  text-success fa-2xl"></i>
+                        <i className="fa-solid fa-square-check  text-success fa-2xl"></i>
                       ) : (
-                   <i class="fa-solid  fa-rectangle-xmark text-danger fa-2xl"></i>
+                        <i className="fa-solid  fa-rectangle-xmark text-danger fa-2xl"></i>
                       )}
                     </td>
                   </tr>
                 );
             })}
           </tbody>
-
-        </table>   <div className="d-flex justify-content-between w-50 m-auto">
-                          <button className="btn btn-danger me-0 mt-5" onClick={this.pagePrevious}>Previous</button>
-                                                   <button className="btn btn-danger me-0 mt-5" onClick={this.pageNext}>Next</button>
-
-</div>
+        </table>{" "}
+        <div className="d-flex justify-content-between w-50 m-auto">
+          <button
+            className="btn btn-danger me-0 mt-5"
+            onClick={this.pagePrevious}
+          >
+            Previous
+          </button>
+          <button className="btn btn-danger me-0 mt-5" onClick={this.pageNext}>
+            Next
+          </button>
+        </div>
       </>
     );
   }
