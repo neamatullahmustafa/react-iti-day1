@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
-// Custom hook for fetching data
 function useFetch(url) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMess, setErrorMess] = useState("");
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(url);
+      setData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setErrorMess("Error fetching data.");
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(url);
-        setData(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setErrorMess("Error fetching data.");
-        setLoading(false);
-      }
-    };
-
     fetchData();
-  }, [url]); // Fetch data when URL changes
+  }, [url]);
 
-  return { data, loading, errorMess };
+  return { data, loading, errorMess, fetchData }; // Return fetchData from the hook
 }
 
 export default function Show() {
-  const { data: products, loading, errorMess } = useFetch(
+  const { data: products, loading, errorMess, fetchData } = useFetch(
     "http://localhost:3001/products"
   );
 
@@ -35,16 +35,26 @@ export default function Show() {
 
   const handleOutOfStock = () => {
     const outOfStockProducts = products.filter((p) => p.quantity === 0);
-    console.log(outOfStockProducts);
     setFilteredProducts(outOfStockProducts);
   };
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:3001/products/${id}`)
+      .then(res => {
+        console.log(res);
+        fetchData(); // Use fetchData from the custom hook
+      })
+      .catch(err => console.log(err));
+  }
 
   return (
     <div className="w-75 m-auto">
       <h1>Products Show</h1>
-      {loading ? (<><div className="d-flex align-items-center justify-content-center w-100 h-100">
-        <i className="fa fa-spinner"></i></div>
-     </> ) : (
+      {loading ? (
+        <div className="d-flex align-items-center justify-content-center w-100 h-100">
+          <i className="fas fa-spinner fa-spin"></i>
+        </div>
+      ) : (
         <>
           <div className="row row-cols-lg-3 row-cols-md-2">
             {(filteredProducts.length > 0 ? filteredProducts : products).map(
@@ -72,6 +82,9 @@ export default function Show() {
                         <p>{item.quantity}</p>
                       )}
                     </p>
+                    <button className="btn btn-dark btn-sm" onClick={() => handleDelete(item.id)}>Del</button>
+                    <Link className='btn btn-dark' to={`/Detailes/${item.id}`}>See More..</Link>
+                    <Link className='btn btn-dark' to={`/Edit/${item.id}`}>Edit</Link>
                   </div>
                 </div>
               )

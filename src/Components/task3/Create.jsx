@@ -109,7 +109,7 @@ setLoading(true);
           ) : null}
         </div>
         <button className="btn btn-dark" type="submit">
-        {loading?  <i className="fa-solid fa-spinner fa-spin-pulse"></i>:    " Submit"}
+        {loading?   <i class="fas fa-spinner fa-spin"></i>: " Submit"}
 
         </button>
         {errorMess? (

@@ -8,16 +8,9 @@
       "imgUrl": "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e"
     },
     {
-      "id": "4",
-      "name": "Coffee",
-      "price": 500,
-      "quantity": 4,
-      "imgUrl": "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c"
-    },
-    {
       "id": "5",
       "name": "Hats",
-      "price": 100,
+      "price": "1100",
       "quantity": 8,
       "imgUrl": "https://images.unsplash.com/photo-1533827432537-70133748f5c8"
     },
@@ -31,7 +24,7 @@
     {
       "id": "7",
       "name": "Basketball",
-      "price": 200,
+      "price": "2004",
       "quantity": 10,
       "imgUrl": "https://images.unsplash.com/photo-1516802273409-68526ee1bdd6"
     },
@@ -124,6 +117,13 @@
       "name": "bbbb",
       "price": 5,
       "quantity": 6,
+      "imgUrl": "https://source.unsplash.com/random"
+    },
+    {
+      "id": "47f4",
+      "name": "llllll",
+      "price": 19,
+      "quantity": 44,
       "imgUrl": "https://source.unsplash.com/random"
     }
   ]
